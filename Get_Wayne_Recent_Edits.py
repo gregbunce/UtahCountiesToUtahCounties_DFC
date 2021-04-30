@@ -20,8 +20,8 @@ env.overwriteOutput = True
 #strTimeNow = time.strftime("%c")
 
 # Set local variables
-updateFeatures = r"L:\agrc\data\county_obtained\Wayne\Testing\WayneCo_20190311.gdb\Centerlines" ### THIS WOULD BE THE NEWEST DATA
-baseFeatures = r"L:\agrc\data\county_obtained\Wayne\WayneCoMar15th2017.gdb\WayneCoRoads" ### THIS IS THE DATA THEY SENT US LAST TIME
+updateFeatures = r"C:\\Temp\\county_etl_run_local\\wayne\\WayneCo_20210415.gdb\\Roads" ### THIS WOULD BE THE NEWEST DATA
+baseFeatures = r"C:\\Temp\\county_etl_run_local\\wayne\\WayneCo_20201202.gdb\\WayneRds" ### THIS IS THE DATA THEY SENT US LAST TIME
 
 dirname = os.path.dirname(arcpy.Describe(updateFeatures).catalogPath)
 desc = arcpy.Describe(dirname)
@@ -55,10 +55,6 @@ for item in list:
             row.ALIAS1 = ""
         if row.ALIAS1_TYP == ' ' or row.ALIAS1_TYP == None or row.ALIAS1_TYP is None:
             row.ALIAS1_TYP = ""
-        if row.ALIAS2 == ' ' or row.ALIAS2 == None or row.ALIAS2 is None:
-            row.ALIAS2 = ""
-        if row.ALIAS2_TYP == ' ' or row.ALIAS2_TYP == None or row.ALIAS2_TYP is None:
-            row.ALIAS2_TYP = ""
         if row.L_F_ADD == ' ' or row.L_F_ADD == None or row.L_F_ADD is None:
             row.L_F_ADD = 0
         if row.L_T_ADD == ' ' or row.L_T_ADD == None or row.L_T_ADD is None:
@@ -89,7 +85,7 @@ print
 change_tolerance = "40" # The Change Tolerance serves as the width of a buffer zone around the update features or the base features.  It's the distance used to determine if there is a spatial change. All matched update features and base features are checked against this tolerance. If any portions of update or base features fall outside the zone around the matched feature, it is considered a spatial change.
 
 ## compare values
-compare_fields = "PRE_DIR PRE_DIR; S_NAME S_NAME; S_TYPE S_TYPE; SUF_DIR SUF_DIR; ACS_ALIAS ACS_ALIAS; ALIAS1 ALIAS1; ALIAS1_TYP ALIAS1_TYP; ALIAS2 ALIAS2; ALIAS2_TYP ALIAS2_TYP; L_F_ADD L_F_ADD; L_T_ADD L_T_ADD; R_F_ADD R_F_ADD; R_T_ADD R_T_ADD"
+compare_fields = "PRE_DIR PRE_DIR; S_NAME S_NAME; S_TYPE S_TYPE; SUF_DIR SUF_DIR; ACS_ALIAS ACS_ALIAS; ALIAS1 ALIAS1; ALIAS1_TYP ALIAS1_TYP; L_F_ADD L_F_ADD; L_T_ADD L_T_ADD; R_F_ADD R_F_ADD; R_T_ADD R_T_ADD"
 
 arcpy.AddMessage("Begining detect feature change process for carbon at: " + time.strftime("%c"))
 #print "begining detect feature change process..."
